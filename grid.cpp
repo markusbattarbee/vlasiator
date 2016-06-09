@@ -441,7 +441,7 @@ bool adjustVelocityBlocks(dccrg::Dccrg<SpatialCell,dccrg::Cartesian_Geometry>& m
    #pragma omp parallel for  
    for (uint i=0; i<cells.size(); ++i) {
       #warning updateSparseMinValue disabled here
-      //mpiGrid[cells[i]]->updateSparseMinValue(popID);
+      mpiGrid[cells[i]]->updateSparseMinValue(popID);
       mpiGrid[cells[i]]->update_velocity_block_content_lists(popID);
    }
    phiprof::stop("Compute with_content_list");

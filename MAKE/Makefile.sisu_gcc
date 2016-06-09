@@ -18,7 +18,7 @@ FLAGS =
 
 #GNU flags:
 CC_BRAND = gcc
-CC_BRAND_VERSION = 5.1.0
+CC_BRAND_VERSION = 5.2.0
 CXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -mavx2 
 testpackage: CXXFLAGS = -O2 -fopenmp -funroll-loops -std=c++0x -fabi-version=0  -mavx
 
@@ -30,8 +30,9 @@ LIB_MPI = -lgomp
 # ZOLTAN_VERSION = current trilinos verson
 
 MPT_VERSION = 7.2.6
-JEMALLOC_VERSION = 4.0.4
-LIBRARY_PREFIX = /proj/vlasiato/libraries/
+JEMALLOC_VERSION = 4.1.0
+#LIBRARY_PREFIX = /proj/vlasiato/libraries/
+LIBRARY_PREFIX = /homeappl/home/marbat/appl_sisu/libraries3
 
 
 #compiled libraries
@@ -41,20 +42,20 @@ LIB_BOOST = -L$(CRAY_TRILINOS_PREFIX_DIR)/lib -lboost_program_options
 INC_ZOLTAN = -I$(CRAY_TRILINOS_PREFIX_DIR)/include
 LIB_ZOLTAN = -I$(CRAY_TRILINOS_PREFIX_DIR)/lib -lzoltan
 
-INC_JEMALLOC = -I$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/jemalloc/$(JEMALLOC_VERSION)/include
-LIB_JEMALLOC = -L$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/jemalloc/$(JEMALLOC_VERSION)/lib -ljemalloc
+INC_JEMALLOC = -I$(LIBRARY_PREFIX)/jemalloc/include
+LIB_JEMALLOC = -L$(LIBRARY_PREFIX)/jemalloc/lib -ljemalloc
 
-INC_VLSV = -I$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/vlsv
-LIB_VLSV = -L$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/vlsv -lvlsv
+INC_VLSV = -I$(LIBRARY_PREFIX)/vlsv
+LIB_VLSV = -L$(LIBRARY_PREFIX)/vlsv -lvlsv
 
-LIB_PROFILE = -L$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/phiprof/lib -lphiprof
-INC_PROFILE = -I$(LIBRARY_PREFIX)/mpich2/$(MPT_VERSION)/$(CC_BRAND)/$(CC_BRAND_VERSION)/phiprof/include
+LIB_PROFILE = -L$(LIBRARY_PREFIX)/phiprof/lib -lphiprof
+INC_PROFILE = -I$(LIBRARY_PREFIX)/phiprof/include
 
 #header libraries
 
-INC_EIGEN = -I$(LIBRARY_PREFIX)/eigen/
+INC_EIGEN = -I$(LIBRARY_PREFIX)/eigen/include/eigen3/
 INC_DCCRG = -I$(LIBRARY_PREFIX)/dccrg/
-INC_VECTORCLASS = -I$(LIBRARY_PREFIX)/vectorclass
+INC_VECTORCLASS = -I$(LIBRARY_PREFIX)/vectorclass/
 
 
 

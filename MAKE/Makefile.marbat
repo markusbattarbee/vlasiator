@@ -1,0 +1,62 @@
+CMP = CC
+LNK = CC
+
+#-DNO_WRITE_AT_ALL:  Define to disable write at all to 
+#                    avoid memleak (much slower IO)
+#-DMPICH_IGNORE_CXX_SEEK: Ignores some multiple definition 
+#                         errors that come up when using 
+#                         mpi.h in c++ on Cray
+
+CXXFLAGS = -DMPICH_IGNORE_CXX_SEEK
+
+FLAGS = 
+
+# NOTES on compiler flags:
+# CXXFLAGS is for compiler flags, they are always used
+# MATHFLAGS are for special math etc. flags, these are only applied on solver functions
+# LDFLAGS flags for linker
+
+#GNU flags:
+CC_BRAND = gcc
+CC_BRAND_VERSION = 5.2.0
+CXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -mavx2 
+testpackage: CXXFLAGS = -O2 -fopenmp -funroll-loops -std=c++0x -fabi-version=0  -mavx
+
+MATHFLAGS = -ffast-math
+LDFLAGS =
+LIB_MPI = -lgomp
+
+# BOOST_VERSION = current trilinos version
+# ZOLTAN_VERSION = current trilinos verson
+
+MPT_VERSION = 7.2.6
+JEMALLOC_VERSION = 4.1.0
+#LIBRARY_PREFIX = /proj/vlasiato/libraries/
+LIBRARY_PREFIX = /homeappl/home/marbat/appl_sisu/libraries3
+
+
+#compiled libraries
+INC_BOOST = -I$(CRAY_TRILINOS_PREFIX_DIR)/include/boost
+LIB_BOOST = -L$(CRAY_TRILINOS_PREFIX_DIR)/lib -lboost_program_options
+
+INC_ZOLTAN = -I$(CRAY_TRILINOS_PREFIX_DIR)/include
+LIB_ZOLTAN = -I$(CRAY_TRILINOS_PREFIX_DIR)/lib -lzoltan
+
+INC_JEMALLOC = -I$(LIBRARY_PREFIX)/jemalloc/include
+LIB_JEMALLOC = -L$(LIBRARY_PREFIX)/jemalloc/lib -ljemalloc
+
+INC_VLSV = -I$(LIBRARY_PREFIX)/vlsv
+LIB_VLSV = -L$(LIBRARY_PREFIX)/vlsv -lvlsv
+
+LIB_PROFILE = -L$(LIBRARY_PREFIX)/phiprof/lib -lphiprof
+INC_PROFILE = -I$(LIBRARY_PREFIX)/phiprof/include
+
+#header libraries
+
+INC_EIGEN = -I$(LIBRARY_PREFIX)/eigen/include/eigen3/
+INC_DCCRG = -I$(LIBRARY_PREFIX)/dccrg/
+INC_VECTORCLASS = -I$(LIBRARY_PREFIX)/vectorclass/
+
+
+
+

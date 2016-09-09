@@ -19,8 +19,14 @@ FLAGS =
 #GNU flags:
 CC_BRAND = gcc
 CC_BRAND_VERSION = 5.2.0
-CXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -mavx2 
 testpackage: CXXFLAGS = -O2 -fopenmp -funroll-loops -std=c++0x -fabi-version=0  -mavx
+
+# Different flags needed for Vlasiator and pusher
+VLASICXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -mavx2 
+PUSHERCXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -msse -mno-avx -mno-avx2
+# Choose which one
+CXXFLATS = $(PUSHERFLAGS)
+
 
 MATHFLAGS = -ffast-math
 LDFLAGS =

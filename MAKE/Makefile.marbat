@@ -25,7 +25,7 @@ testpackage: CXXFLAGS = -O2 -fopenmp -funroll-loops -std=c++0x -fabi-version=0  
 VLASICXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -mavx2 
 PUSHERCXXFLAGS += -O3 -fopenmp -funroll-loops -std=c++0x -W -Wall -Wno-unused -fabi-version=0 -msse -mno-avx -mno-avx2
 # Choose which one
-CXXFLATS = $(PUSHERFLAGS)
+CXXFLAGS = $(PUSHERCXXFLAGS)
 
 
 MATHFLAGS = -ffast-math
